@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block internal/utility paths
+Disallow: /assets/
+Disallow: /.env
+Disallow: /.env.example
+
+Sitemap: https://www.aiexim.co/sitemap.xml

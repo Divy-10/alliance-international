@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+/* ───────────── Design tokens ───────────── */
+@theme {
+  /* Removed: forest, olive — no green colours */
+  --color-black: #000000;
+  --color-charcoal: #171717;
+  --color-ivory: #f8f7f2;
+  --color-softgrey: #eaeaea;
+  --color-gold: #b49a68;
+  --color-white: #ffffff;
+
+  --font-serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-charcoal antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-medium tracking-[-0.01em] text-charcoal;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-gold) 35%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  img {
+    @apply select-none;
+    /* Prevent layout shifts on lazy-loaded images */
+    content-visibility: auto;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1320px] px-6 sm:px-8 lg:px-12;
+  }
+  .section-y {
+    @apply py-24 md:py-32;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-8 bg-gold;
+  }
+  .display-1 {
+    @apply font-serif text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[5.25rem];
+  }
+  .display-2 {
+    @apply font-serif text-[2.25rem] leading-[1.08] sm:text-5xl lg:text-[3.6rem];
+  }
+  .lead {
+    @apply text-[1.0625rem] leading-[1.85] text-charcoal/75;
+  }
+  .hairline {
+    @apply border-charcoal/10;
+  }
+
+  /* Form fields */
+  .field-label {
+    @apply mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-charcoal/60;
+  }
+  .field-input {
+    @apply w-full rounded-none border-0 border-b border-charcoal/20 bg-transparent px-0 py-3 text-[15px] text-charcoal transition-colors duration-300 placeholder:text-charcoal/35 focus:border-charcoal focus:ring-0 focus:outline-none;
+  }
+  .field-input[aria-invalid='true'] {
+    @apply border-red-700/70;
+  }
+}
+
+/* ───────────── Motion ───────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.page-enter {
+  animation: fade-in 0.6s var(--ease-soft) both;
+}
+.anim-fade-up {
+  animation: fade-up 0.9s var(--ease-soft) both;
+}
+.anim-slow-zoom {
+  animation: slow-zoom 2.4s var(--ease-soft) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-charcoal) 6%, transparent);
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: shimmer 1.6s infinite;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
