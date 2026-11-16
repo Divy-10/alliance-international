@@ -3,8 +3,6 @@
  * Items marked PLACEHOLDER are awaiting content from Alliance International.
  */
 
-const U = (id, w = 2000) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=85`;
-
 export const COMPANY = {
   name: 'Alliance International',
   domain: 'www.aiexim.co',
@@ -23,22 +21,22 @@ export const CONTACT_PLACEHOLDERS = {
 
 export const IMAGES = {
   // Hero — cinematic red onion harvest
-  hero: U('photo-1618512496248-a07fe83aa8cb', 2400),
+  hero: '/images/hero.jpg',
   // About intro — harvested agricultural produce, warm tones
-  about: U('photo-1500382017468-9049fed747ef', 1600),
+  about: '/images/about.jpg',
   // About page hero — wide fields
-  aboutHero: U('photo-1625246333195-78d9c38ad449', 2400),
+  aboutHero: '/images/about-hero.jpg',
   // Fields — produce at source
-  fields: U('photo-1464226184884-fa280b87c399', 1600),
+  fields: '/images/fields.jpg',
   // Global trade — shipping / port logistics
-  trade: U('photo-1494412574643-ff11b0a5c1c3', 2400),
+  trade: '/images/trade.jpg',
   // Containers / warehouse
-  containers: U('photo-1578575437130-527eed3abbec', 1600),
-  warehouse: U('photo-1586528116311-ad8dd3c8310d', 1600),
+  containers: '/images/containers.jpg',
+  warehouse: '/images/warehouse.jpg',
   // Products hero — varied spices & produce overhead
-  productsHero: U('photo-1596040033229-a9821ebd058d', 2400),
+  productsHero: '/images/products-hero.jpg',
   // Contact hero — shipping logistics
-  contactHero: U('photo-1578575437130-527eed3abbec', 2400),
+  contactHero: '/images/contact-hero.jpg',
 };
 
 export const ABOUT_SHORT = [

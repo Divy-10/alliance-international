@@ -4,7 +4,7 @@
     "category_name": "Red Onion",
     "category_slug": "red-onion",
     "category_description": "Premium quality red onions sourced from certified farms, available in various grades for global export.",
-    "category_image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-red-onion.jpg",
     "display_order": 1,
     "status": "Active"
   },
@@ -13,7 +13,7 @@
     "category_name": "Dehydrated Onions",
     "category_slug": "dehydrated-onions",
     "category_description": "BRC-certified dehydrated onion products including flakes, granules, powder and minced varieties.",
-    "category_image": "https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-dehydrated-onions.jpg",
     "display_order": 2,
     "status": "Active"
   },
@@ -22,7 +22,7 @@
     "category_name": "Dehydrated Garlic",
     "category_slug": "dehydrated-garlic",
     "category_description": "Premium dehydrated garlic in multiple forms — flakes, granules, powder and chopped — for food processing industries worldwide.",
-    "category_image": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-dehydrated-garlic.jpg",
     "display_order": 3,
     "status": "Active"
   },
@@ -31,7 +31,7 @@
     "category_name": "Sesame Seeds",
     "category_slug": "sesame-seeds",
     "category_description": "Natural and hulled sesame seeds of the highest purity, sourced from prime growing regions for international markets.",
-    "category_image": "https://images.unsplash.com/photo-1607672632458-9eb56696346b?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-sesame-seeds.jpg",
     "display_order": 4,
     "status": "Active"
   },
@@ -40,7 +40,7 @@
     "category_name": "Cotton Yarn",
     "category_slug": "cotton-yarn",
     "category_description": "Premium cotton yarn in multiple counts and combed or carded variants, tailored for textile manufacturing.",
-    "category_image": "https://images.unsplash.com/photo-1594897030264-ab7d87efc473?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-cotton-yarn.jpg",
     "display_order": 5,
     "status": "Active"
   },
@@ -49,7 +49,7 @@
     "category_name": "Pulses",
     "category_slug": "pulses",
     "category_description": "A wide range of dried pulses — lentils, chickpeas, kidney beans and more — cleaned and graded to international standards.",
-    "category_image": "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-pulses.jpg",
     "display_order": 6,
     "status": "Active"
   },
@@ -58,7 +58,7 @@
     "category_name": "Spices",
     "category_slug": "spices",
     "category_description": "Aromatic whole and ground spices — cumin, coriander, turmeric, chilli and more — sourced from India's finest spice farms.",
-    "category_image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=85",
+    "category_image": "/images/cat-spices.jpg",
     "display_order": 7,
     "status": "Active"
   }
