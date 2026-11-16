@@ -42,8 +42,8 @@ export default function Header() {
       }`}
     >
       <div className={`container-x flex items-center justify-between transition-all duration-500 ${solid ? 'h-20' : 'h-24'}`}>
-        <Link to="/" className="relative z-10" aria-label="Alliance International — Home">
-          <Logo light={!solid} />
+        <Link to="/" className="relative z-10 flex items-center" aria-label="Alliance International — Home">
+          <Logo light={!solid} height="h-9 sm:h-11" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-10 lg:flex">

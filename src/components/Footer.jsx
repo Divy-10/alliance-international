@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="container-x pt-20 pb-10 md:pt-24">
         <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <Logo light />
+            <Logo light height="h-10 sm:h-12" />
             <p className="mt-7 max-w-sm text-[14px] leading-7 text-white/50">{COMPANY.footerIntro}</p>
             <p className="mt-6 text-[12px] tracking-[0.18em] text-gold uppercase">{COMPANY.domain}</p>
           </div>
