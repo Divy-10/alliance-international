@@ -1,32 +1,31 @@
 import { ChevronDown, ShieldCheck, Globe, Clock, Award } from 'lucide-react';
 import Button from './Button.jsx';
-import SmartImage from './SmartImage.jsx';
 import { IMAGES } from '../data/siteContent.js';
 
 export default function Hero() {
   return (
-    <section className="relative isolate flex min-h-[100svh] flex-col justify-between overflow-hidden bg-black">
-      {/* Background Hero Image — fully visible across the section */}
-      <SmartImage
-        src={IMAGES.hero}
-        alt="Premium red onions — freshly harvested"
-        eager
-        fetchPriority="high"
-        dark
-        className="absolute inset-0 -z-20 h-full w-full"
-        imgClassName="object-cover object-center scale-[1.02] transition-transform duration-1000"
-      />
+    <section className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-black">
+      {/* 1. HERO BACKGROUND IMAGE — Direct positive z-index stacking */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={IMAGES.hero}
+          alt="Premium export red onions harvest"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+          className="h-full w-full object-cover object-center"
+        />
+        {/* Transparent dark veil so text is crisp while image remains clearly visible */}
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+      </div>
 
-      {/* Lightweight, transparent cinematic overlays — allows photo to shine through clearly */}
-      <div className="absolute inset-0 -z-10 bg-black/40" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-transparent to-black/50" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent" />
-
-      {/* Main Content Area — Text directly positioned over the image */}
-      <div className="container-x relative z-10 flex flex-1 flex-col justify-center pt-32 pb-10 md:pt-40 md:pb-14">
+      {/* 2. TEXT CONTENT — Positioned directly ON TOP of the image */}
+      <div className="container-x relative z-10 flex flex-1 flex-col justify-center pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-3xl">
           {/* Eyebrow badge */}
-          <div className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-gold/50 bg-black/60 px-4 py-1.5 shadow-lg backdrop-blur-md">
+          <div className="anim-fade-up inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-black/60 px-4 py-1.5 shadow-xl backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_8px_#b49a68]" />
             <span className="text-[11px] font-semibold tracking-[0.26em] text-gold uppercase">
               International Agro-Commodity Export
@@ -35,7 +34,7 @@ export default function Hero() {
 
           {/* Main Headline directly over image */}
           <h1
-            className="anim-fade-up mt-6 font-serif text-[2.75rem] leading-[1.05] !text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] sm:text-6xl md:text-7xl lg:text-[5.25rem]"
+            className="anim-fade-up mt-6 font-serif text-[2.85rem] leading-[1.05] !text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] sm:text-6xl md:text-7xl lg:text-[5.25rem]"
             style={{ animationDelay: '100ms' }}
           >
             Connecting Global Markets Through{' '}
@@ -44,7 +43,7 @@ export default function Hero() {
 
           {/* Subtitle & Value Proposition */}
           <p
-            className="anim-fade-up mt-6 max-w-2xl border-l-2 border-gold pl-5 text-[1.0625rem] leading-[1.8] text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] md:text-[1.125rem]"
+            className="anim-fade-up mt-6 max-w-2xl border-l-2 border-gold pl-5 text-[1.0625rem] leading-[1.8] text-white/95 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] md:text-[1.125rem]"
             style={{ animationDelay: '200ms' }}
           >
             Delivering export-grade agricultural commodities directly from fertile origins to global destinations through
@@ -56,18 +55,18 @@ export default function Hero() {
             className="anim-fade-up mt-9 flex flex-wrap items-center gap-4 sm:gap-5"
             style={{ animationDelay: '300ms' }}
           >
-            <Button to="/products" variant="light" className="shadow-xl">
+            <Button to="/products" variant="light" className="shadow-2xl">
               Explore Our Products
             </Button>
-            <Button to="/contact" variant="ghostLight" arrow={false} className="shadow-lg backdrop-blur-sm">
+            <Button to="/contact" variant="ghostLight" arrow={false} className="shadow-xl backdrop-blur-md">
               Contact Us
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Trust & Credentials Bottom Strip with glassmorphism so image shows underneath */}
-      <div className="relative z-10 border-t border-white/20 bg-black/45 py-6 backdrop-blur-md">
+      {/* 3. Trust & Credentials Bottom Strip */}
+      <div className="relative z-10 border-t border-white/20 bg-black/60 py-6 backdrop-blur-md">
         <div className="container-x">
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-4 lg:gap-8">
             <div className="flex items-center gap-3">
