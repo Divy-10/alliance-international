@@ -248,7 +248,7 @@ function setupSheets() {
     if (sh.getLastRow() === 0) {
       sh.appendRow(defs[name]);
       sh.setFrozenRows(1);
-      sh.getRange(1, 1, 1, defs[name].length).setFontWeight('bold').setBackground('#183C30').setFontColor('#F8F7F2');
+      sh.getRange(1, 1, 1, defs[name].length).setFontWeight('bold').setBackground('#171717').setFontColor('#F8F7F2');
     }
   });
   var statusRule = SpreadsheetApp.newDataValidation().requireValueInList(['Active', 'Inactive'], true).build();

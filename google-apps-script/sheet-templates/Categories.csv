@@ -1,8 +1,8 @@
 category_id,category_name,category_slug,category_description,category_image,display_order,status
-CAT-001,Red Onion,red-onion,,https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=1200&q=80,1,Active
-CAT-002,Dehydrated Onions,dehydrated-onions,,https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1200&q=80,2,Active
-CAT-003,Dehydrated Garlic,dehydrated-garlic,,https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=1200&q=80,3,Active
-CAT-004,Sesame Seeds,sesame-seeds,,https://images.unsplash.com/photo-1607672632458-9eb56696346b?auto=format&fit=crop&w=1200&q=80,4,Active
-CAT-005,Cotton Yarn,cotton-yarn,,https://images.unsplash.com/photo-1594897030264-ab7d87efc473?auto=format&fit=crop&w=1200&q=80,5,Active
-CAT-006,Pulses,pulses,,https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=1200&q=80,6,Active
-CAT-007,Spices,spices,,https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80,7,Active
+CAT-001,Red Onion,red-onion,Premium quality red onions sourced from certified farms,/images/cat-red-onion.jpg,1,Active
+CAT-002,Dehydrated Onions,dehydrated-onions,BRC-certified dehydrated onion flakes powder and minced varieties,/images/cat-dehydrated-onions.jpg,2,Active
+CAT-003,Dehydrated Garlic,dehydrated-garlic,Premium dehydrated garlic in flakes powder and chopped form,/images/cat-dehydrated-garlic.jpg,3,Active
+CAT-004,Sesame Seeds,sesame-seeds,Natural and hulled sesame seeds of the highest purity,/images/cat-sesame-seeds.jpg,4,Active
+CAT-005,Cotton Yarn,cotton-yarn,Premium cotton yarn in multiple counts for textile manufacturing,/images/cat-cotton-yarn.jpg,5,Active
+CAT-006,Pulses,pulses,A wide range of dried pulses lentils chickpeas and beans,/images/cat-pulses.jpg,6,Active
+CAT-007,Spices,spices,Aromatic whole and ground Indian spices,/images/cat-spices.jpg,7,Active
