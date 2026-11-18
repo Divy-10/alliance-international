@@ -43,31 +43,74 @@ export default function Home() {
 
       <FeaturedProducts />
 
-      {/* Global trade statement */}
-      <section className="relative isolate overflow-hidden bg-black">
-        <SmartImage src={IMAGES.trade} alt="Container vessel at an international port" dark className="absolute inset-0 -z-10" />
-        <div className="absolute inset-0 -z-10 bg-black/70" />
-        <div className="container-x grid min-h-[78vh] items-center py-28 lg:grid-cols-12">
-          <Reveal className="lg:col-span-8">
-            <p className="eyebrow">Global Trade</p>
-            <h2 className="mt-8 font-serif text-[2.6rem] leading-[1.05] !text-white sm:text-6xl lg:text-[4.75rem]">
-              From Agricultural Origins to Global Destinations.
-            </h2>
-            <p className="mt-8 max-w-2xl text-[1.0625rem] leading-8 text-white/70">
-              From the initial harvest in the field to the final international destination, Alliance International is your
-              trusted global partner for premium agricultural sourcing.
-            </p>
-          </Reveal>
-          <Reveal delay={150} className="mt-16 lg:col-span-4 lg:mt-0">
-            <ol className="space-y-px">
-              {['Field', 'Quality', 'Logistics', 'Destination'].map((s, i) => (
-                <li key={s} className="flex items-center gap-6 border-t border-white/15 py-5 last:border-b">
-                  <span className="font-serif text-sm text-gold italic">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="font-serif text-2xl text-white">{s}</span>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
+      {/* Global trade statement — Cinematic Cargo Ship Background */}
+      <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-black py-28 md:py-36">
+        {/* 1. Cinematic Background Image — Positive z-stacking */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={IMAGES.trade}
+            alt="International container cargo ship at golden hour"
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-center md:object-[center_35%]"
+          />
+          {/* Subtle directional gradient: darker on left for readability, translucent on right to showcase the ship and sunset */}
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50" />
+        </div>
+
+        {/* 2. Content directly over background */}
+        <div className="container-x relative z-10 w-full">
+          <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-gold/50 bg-black/60 px-4 py-1.5 shadow-lg backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_8px_#b49a68]" />
+                <span className="text-[11px] font-semibold tracking-[0.26em] text-gold uppercase">
+                  Global Trade &amp; Logistics
+                </span>
+              </div>
+              <h2 className="mt-6 font-serif text-[2.75rem] leading-[1.05] !text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] sm:text-6xl lg:text-[4.75rem]">
+                From Agricultural Origins to <em className="font-normal italic text-[#e5d8be]">Global</em> Destinations.
+              </h2>
+              <p className="mt-6 max-w-2xl text-[1.0625rem] leading-8 text-white/85 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                From the initial harvest in certified fields to the final international port, Alliance International delivers
+                end-to-end supply chain reliability, temperature-controlled logistics, and seamless export compliance worldwide.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Button to="/about" variant="light">
+                  Our Supply Chain
+                </Button>
+                <Button to="/contact" variant="ghostLight" arrow={false} className="border-white/30 backdrop-blur-sm">
+                  Inquire For Shipments
+                </Button>
+              </div>
+            </Reveal>
+
+            <Reveal delay={150} className="lg:col-span-5">
+              <div className="rounded-2xl border border-white/20 bg-black/60 p-8 shadow-2xl backdrop-blur-md">
+                <p className="text-[11px] font-semibold tracking-[0.24em] text-gold uppercase">
+                  End-to-End Trade Architecture
+                </p>
+                <ol className="mt-6 divide-y divide-white/15">
+                  {[
+                    { step: '01', title: 'Farm & Harvest', desc: 'Direct sourcing from certified agronomic origins' },
+                    { step: '02', title: 'Quality Verification', desc: 'BRC, FSSAI & rigorous batch laboratory testing' },
+                    { step: '03', title: 'Maritime Logistics', desc: 'Reefer & containerized global port dispatch' },
+                    { step: '04', title: 'Destination Delivery', desc: 'Seamless customs clearance & buyer receipt' },
+                  ].map((s) => (
+                    <li key={s.step} className="flex items-start gap-5 py-4 first:pt-0 last:pb-0">
+                      <span className="font-serif text-lg font-medium text-gold italic">{s.step}</span>
+                      <div>
+                        <p className="font-serif text-xl font-medium text-white">{s.title}</p>
+                        <p className="mt-0.5 text-[13px] text-white/65">{s.desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
