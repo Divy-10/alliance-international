@@ -1,4 +1,33 @@
-import { getCatalog } from './apiClient.js';
+import { getCatalog, getCatalogSync } from './apiClient.js';
+
+/** Synchronous accessors for instant Frame 1 rendering */
+export function getCachedProducts() {
+  const { products } = getCatalogSync();
+  return products;
+}
+
+export function getCachedProductsByCategory(categorySlug) {
+  const { products } = getCatalogSync();
+  return products.filter((p) => p.categorySlug === categorySlug);
+}
+
+export function getCachedFeaturedProducts(limit) {
+  const { products } = getCatalogSync();
+  const featured = products.filter((p) => p.featured);
+  return typeof limit === 'number' ? featured.slice(0, limit) : featured;
+}
+
+export function getCachedProductBySlug(productSlug, categorySlug) {
+  const { products } = getCatalogSync();
+  return (
+    products.find((p) => p.slug === productSlug && (!categorySlug || p.categorySlug === categorySlug)) || null
+  );
+}
+
+export function getCachedRelatedProducts(product, limit = 3) {
+  const { products } = getCatalogSync();
+  return products.filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id).slice(0, limit);
+}
 
 /** All active products (in active categories), sorted by display_order. */
 export async function getProducts() {

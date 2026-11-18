@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Image with lazy loading, a soft fade-in, and an elegant typographic
- * fallback if the URL is missing or fails to load (e.g. a broken link
- * pasted into Google Sheets).
+ * Image component that displays images immediately without artificial opacity delays
+ * or blocking skeletons, with an elegant typographic fallback if the URL fails to load.
  *
  * Props:
- *  - eager: boolean — use loading="eager" (for above-the-fold / LCP images)
+ *  - eager: boolean — use loading="eager" and decoding="sync" (for above-the-fold / LCP images)
  *  - fetchPriority: "high" | "low" | "auto" — hint to browser for LCP images
  *  - dark: boolean — dark placeholder background
  */
@@ -20,28 +19,26 @@ export default function SmartImage({
   fetchPriority = 'auto',
   dark = false,
 }) {
-  const [status, setStatus] = useState(src ? 'loading' : 'error');
+  const [hasError, setHasError] = useState(!src);
 
-  useEffect(() => setStatus(src ? 'loading' : 'error'), [src]);
+  useEffect(() => {
+    setHasError(!src);
+  }, [src]);
 
   return (
     <div className={`relative overflow-hidden ${dark ? 'bg-black' : 'bg-[#ecebe3]'} ${className}`}>
-      {status !== 'error' && (
+      {!hasError && src && (
         <img
           src={src}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           decoding={eager ? 'sync' : 'async'}
           fetchPriority={fetchPriority}
-          onLoad={() => setStatus('loaded')}
-          onError={() => setStatus('error')}
-          className={`h-full w-full object-cover transition-opacity duration-700 ${
-            status === 'loaded' ? 'opacity-100' : 'opacity-0'
-          } ${imgClassName}`}
+          onError={() => setHasError(true)}
+          className={`h-full w-full object-cover ${imgClassName}`}
         />
       )}
-      {status === 'loading' && <div className="skeleton absolute inset-0" aria-hidden="true" />}
-      {status === 'error' && (
+      {hasError && (
         <div
           role={alt ? 'img' : undefined}
           aria-label={alt || undefined}

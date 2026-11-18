@@ -3,14 +3,14 @@ import CategoryCard from '../components/CategoryCard.jsx';
 import Reveal from '../components/Reveal.jsx';
 import ContactCTA from '../components/ContactCTA.jsx';
 import { CardGridSkeleton, EmptyState, ErrorState } from '../components/States.jsx';
-import { getCategories } from '../services/categoryService.js';
+import { getCategories, getCachedCategories } from '../services/categoryService.js';
 import { useAsync } from '../hooks/useAsync.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
 import { IMAGES } from '../data/siteContent.js';
 
 export default function Products() {
   usePageTitle('Products');
-  const { data: categories, loading, error, reload } = useAsync(getCategories, []);
+  const { data: categories, loading, error, reload } = useAsync(getCategories, [], getCachedCategories);
 
   return (
     <>

@@ -6,8 +6,8 @@ import ProductCard from '../components/ProductCard.jsx';
 import Reveal from '../components/Reveal.jsx';
 import ContactCTA from '../components/ContactCTA.jsx';
 import { CardGridSkeleton, EmptyState, ErrorState } from '../components/States.jsx';
-import { getCategoryBySlug } from '../services/categoryService.js';
-import { getProductsByCategory } from '../services/productService.js';
+import { getCategoryBySlug, getCachedCategoryBySlug } from '../services/categoryService.js';
+import { getProductsByCategory, getCachedProductsByCategory } from '../services/productService.js';
 import { useAsync } from '../hooks/useAsync.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
 import NotFound from './NotFound.jsx';
@@ -23,10 +23,17 @@ export default function CategoryProducts() {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('default');
 
-  const { data, loading, error, reload } = useAsync(async () => {
-    const [category, products] = await Promise.all([getCategoryBySlug(categorySlug), getProductsByCategory(categorySlug)]);
-    return { category, products };
-  }, [categorySlug]);
+  const { data, loading, error, reload } = useAsync(
+    async () => {
+      const [category, products] = await Promise.all([getCategoryBySlug(categorySlug), getProductsByCategory(categorySlug)]);
+      return { category, products };
+    },
+    [categorySlug],
+    () => ({
+      category: getCachedCategoryBySlug(categorySlug),
+      products: getCachedProductsByCategory(categorySlug),
+    }),
+  );
 
   usePageTitle(data?.category?.name || 'Products');
 

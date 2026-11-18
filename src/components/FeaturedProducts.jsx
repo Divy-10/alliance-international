@@ -4,12 +4,16 @@ import ProductCard from './ProductCard.jsx';
 import SectionHeading from './SectionHeading.jsx';
 import Button from './Button.jsx';
 import { CardGridSkeleton, ErrorState } from './States.jsx';
-import { getFeaturedProducts } from '../services/productService.js';
+import { getFeaturedProducts, getCachedFeaturedProducts } from '../services/productService.js';
 import { useAsync } from '../hooks/useAsync.js';
 
 /** Homepage carousel of products marked "featured" in Google Sheets. */
 export default function FeaturedProducts() {
-  const { data: products, loading, error, reload } = useAsync(() => getFeaturedProducts(12), []);
+  const { data: products, loading, error, reload } = useAsync(
+    () => getFeaturedProducts(12),
+    [],
+    () => getCachedFeaturedProducts(12),
+  );
   const track = useRef(null);
   const [edges, setEdges] = useState({ start: true, end: false });
 

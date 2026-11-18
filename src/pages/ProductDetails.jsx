@@ -7,18 +7,31 @@ import SmartImage from '../components/SmartImage.jsx';
 import ProductCard, { enquiryPath } from '../components/ProductCard.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { ErrorState } from '../components/States.jsx';
-import { getProductBySlug, getRelatedProducts } from '../services/productService.js';
+import {
+  getProductBySlug,
+  getRelatedProducts,
+  getCachedProductBySlug,
+  getCachedRelatedProducts,
+} from '../services/productService.js';
 import { useAsync } from '../hooks/useAsync.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
 import NotFound from './NotFound.jsx';
 
 export default function ProductDetails() {
   const { categorySlug, productSlug } = useParams();
-  const { data, loading, error, reload } = useAsync(async () => {
-    const product = await getProductBySlug(productSlug, categorySlug);
-    const related = product ? await getRelatedProducts(product, 3) : [];
-    return { product, related };
-  }, [categorySlug, productSlug]);
+  const { data, loading, error, reload } = useAsync(
+    async () => {
+      const product = await getProductBySlug(productSlug, categorySlug);
+      const related = product ? await getRelatedProducts(product, 3) : [];
+      return { product, related };
+    },
+    [categorySlug, productSlug],
+    () => {
+      const product = getCachedProductBySlug(productSlug, categorySlug);
+      const related = product ? getCachedRelatedProducts(product, 3) : [];
+      return product ? { product, related } : null;
+    },
+  );
 
   const product = data?.product;
   usePageTitle(product?.name || 'Product');
