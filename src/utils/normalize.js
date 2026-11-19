@@ -79,6 +79,7 @@ const PRODUCT_IMAGE_OVERRIDES = {
   'dehydrated-onion-powder': '/images/dehydrated-onion-powder.jpg',
   'dehydrated-onion-granules': '/images/dehydrated-onion-granules.jpg',
   'dehydrated-minced-onion': '/images/dehydrated-minced-onion.jpg',
+  'dehydrated-garlic-flakes': '/images/dehydrated-garlic-flakes.jpg',
 };
 
 export function normalizeProduct(row) {
