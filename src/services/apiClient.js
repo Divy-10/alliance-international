@@ -11,7 +11,7 @@ import { normalizeCategory, normalizeProduct, isActive, byDisplayOrder } from '.
 import demoCategories from '../data/demoCategories.json';
 import demoProducts from '../data/demoProducts.json';
 
-const STORAGE_KEY = 'ai_catalog_swr_v4';
+const STORAGE_KEY = 'ai_catalog_swr_v5';
 
 export class ApiError extends Error {
   constructor(message, cause) {

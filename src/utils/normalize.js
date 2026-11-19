@@ -72,21 +72,27 @@ export function normalizeCategory(row) {
   };
 }
 
+// Dedicated product image mappings
+const PRODUCT_IMAGE_OVERRIDES = {
+  'dehydrated-white-onion-flakes': '/images/dehydrated-white-onion-flakes.jpg',
+};
+
 export function normalizeProduct(row) {
   const name = str(row.product_name);
   if (!name) return null;
-  const image = str(row.product_image);
+  const slug = slugify(row.product_slug) || slugify(name);
+  let image = PRODUCT_IMAGE_OVERRIDES[slug] || str(row.product_image);
   const gallery = toList(row.gallery_images);
   return {
     id: str(row.product_id) || slugify(name),
     categoryId: str(row.category_id),
     categoryName: str(row.category_name),
     name,
-    slug: slugify(row.product_slug) || slugify(name),
+    slug,
     shortDescription: str(row.short_description),
     fullDescription: str(row.full_description),
     image,
-    images: [image, ...gallery].filter((u, i, all) => u && all.indexOf(u) === i),
+    images: [image, ...gallery.filter((g) => g !== '/images/cat-dehydrated-onions.jpg')].filter((u, i, all) => u && all.indexOf(u) === i),
     specifications: toSpecs(row.specifications),
     grade: str(row.grade),
     origin: str(row.origin),
