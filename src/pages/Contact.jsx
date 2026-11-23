@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { Mail, MapPin, Phone, Clock } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import PageHero from '../components/PageHero.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -33,11 +33,6 @@ export default function Contact() {
       label: 'Location',
       value: CONTACT_INFO.address,
       isPlaceholder: true,
-    },
-    {
-      icon: Clock,
-      label: 'Business Hours',
-      value: CONTACT_INFO.hours,
     },
   ];
 

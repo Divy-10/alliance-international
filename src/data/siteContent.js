@@ -16,7 +16,6 @@ export const CONTACT_INFO = {
   email: 'jayant@aiexim.com',
   phone: '+91 98344 57388',
   address: '[Office address — to be provided]',
-  hours: 'Mon – Sat: 9:00 AM – 6:00 PM (IST)',
 };
 
 /** Backwards-compatibility alias */
