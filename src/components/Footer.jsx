@@ -40,17 +40,27 @@ export default function Footer() {
           </FooterCol>
 
           <FooterCol title="Contact" className="lg:col-span-3">
-            <li className="flex gap-3 text-white/40">
-              <Mail className="mt-1 h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
-              {CONTACT_PLACEHOLDERS.email}
+            <li>
+              <a
+                href={`mailto:${CONTACT_PLACEHOLDERS.email}`}
+                className="flex items-center gap-3 text-white/55 transition-colors duration-300 hover:text-white"
+              >
+                <Mail className="h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
+                <span>{CONTACT_PLACEHOLDERS.email}</span>
+              </a>
             </li>
-            <li className="flex gap-3 text-white/40">
-              <Phone className="mt-1 h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
-              {CONTACT_PLACEHOLDERS.phone}
+            <li>
+              <a
+                href={`tel:${CONTACT_PLACEHOLDERS.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-3 text-white/55 transition-colors duration-300 hover:text-white"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
+                <span>{CONTACT_PLACEHOLDERS.phone}</span>
+              </a>
             </li>
-            <li className="flex gap-3 text-white/40">
+            <li className="flex items-start gap-3 text-white/40">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
-              {CONTACT_PLACEHOLDERS.address}
+              <span>{CONTACT_PLACEHOLDERS.address}</span>
             </li>
           </FooterCol>
         </div>

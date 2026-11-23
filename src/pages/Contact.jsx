@@ -3,7 +3,7 @@ import { Mail, MapPin, Phone, Clock } from 'lucide-react';
 import PageHero from '../components/PageHero.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 import Reveal from '../components/Reveal.jsx';
-import { CONTACT_PLACEHOLDERS, IMAGES } from '../data/siteContent.js';
+import { CONTACT_INFO, IMAGES } from '../data/siteContent.js';
 import { getCategories } from '../services/categoryService.js';
 import { useAsync } from '../hooks/useAsync.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
@@ -16,10 +16,29 @@ export default function Contact() {
   const productOptions = (categories || []).map((c) => c.name);
 
   const details = [
-    { icon: Mail, label: 'Email', value: CONTACT_PLACEHOLDERS.email },
-    { icon: Phone, label: 'Phone', value: CONTACT_PLACEHOLDERS.phone },
-    { icon: MapPin, label: 'Location', value: CONTACT_PLACEHOLDERS.address },
-    { icon: Clock, label: 'Business Hours', value: CONTACT_PLACEHOLDERS.hours },
+    {
+      icon: Mail,
+      label: 'Email',
+      value: CONTACT_INFO.email,
+      href: `mailto:${CONTACT_INFO.email}`,
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: CONTACT_INFO.phone,
+      href: `tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`,
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: CONTACT_INFO.address,
+      isPlaceholder: true,
+    },
+    {
+      icon: Clock,
+      label: 'Business Hours',
+      value: CONTACT_INFO.hours,
+    },
   ];
 
   return (
@@ -38,12 +57,23 @@ export default function Contact() {
             <p className="eyebrow">Our Contacts</p>
             <h2 className="mt-6 text-[2.4rem] leading-[1.1]">Get in touch with Alliance International.</h2>
             <ul className="mt-12 border-t border-charcoal/10">
-              {details.map(({ icon: Icon, label, value }) => (
+              {details.map(({ icon: Icon, label, value, href, isPlaceholder }) => (
                 <li key={label} className="flex gap-5 border-b border-charcoal/10 py-6">
                   <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" strokeWidth={1.25} />
                   <div>
                     <p className="text-[11px] font-semibold tracking-[0.22em] text-charcoal/50 uppercase">{label}</p>
-                    <p className="mt-2 text-[15px] text-charcoal/55 italic">{value}</p>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="mt-2 block text-[15px] font-medium text-charcoal transition-colors hover:text-gold hover:underline underline-offset-4"
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <p className={`mt-2 text-[15px] ${isPlaceholder ? 'text-charcoal/50 italic' : 'font-medium text-charcoal'}`}>
+                        {value}
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}

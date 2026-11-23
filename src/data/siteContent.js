@@ -11,13 +11,16 @@ export const COMPANY = {
     'A joint venture between Alpha Food Ingredients and United Raw Material, connecting the world with the finest agro commodities.',
 };
 
-/** Contact details were not supplied in the brief — clearly marked placeholders. */
-export const CONTACT_PLACEHOLDERS = {
-  email: '[Email address — to be provided]',
-  phone: '[Phone number — to be provided]',
+/** Official contact details for Alliance International */
+export const CONTACT_INFO = {
+  email: 'jayant@aiexim.com',
+  phone: '+91 98344 57388',
   address: '[Office address — to be provided]',
-  hours: '[Business hours — to be provided]',
+  hours: 'Mon – Sat: 9:00 AM – 6:00 PM (IST)',
 };
+
+/** Backwards-compatibility alias */
+export const CONTACT_PLACEHOLDERS = CONTACT_INFO;
 
 export const IMAGES = {
   // Hero — cinematic red onion harvest
