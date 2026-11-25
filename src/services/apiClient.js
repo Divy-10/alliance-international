@@ -11,7 +11,7 @@ import { normalizeCategory, normalizeProduct, isActive, byDisplayOrder } from '.
 import demoCategories from '../data/demoCategories.json';
 import demoProducts from '../data/demoProducts.json';
 
-const STORAGE_KEY = 'ai_catalog_swr_v12';
+const STORAGE_KEY = 'ai_catalog_swr_v13';
 
 export class ApiError extends Error {
   constructor(message, cause) {
@@ -22,12 +22,15 @@ export class ApiError extends Error {
 }
 
 function prepare({ categories = [], products = [] }) {
-  const cats = categories.map(normalizeCategory).filter((c) => c && isActive(c.status)).sort(byDisplayOrder);
+  const sourceCats = categories && categories.length > 0 ? categories : demoCategories;
+  const sourceProds = products && products.length > 0 ? products : demoProducts;
+
+  const cats = sourceCats.map(normalizeCategory).filter((c) => c && isActive(c.status)).sort(byDisplayOrder);
 
   const catById = new Map(cats.map((c) => [c.id, c]));
   const catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c]));
 
-  const prods = products
+  const prods = sourceProds
     .map(normalizeProduct)
     .filter((p) => p && isActive(p.status))
     .map((p) => {
@@ -126,8 +129,8 @@ async function loadFromAppsScript() {
     throw new ApiError('The catalogue returned an unexpected response. Check the Apps Script deployment access is set to "Anyone".', err);
   }
 
-  if (!json || json.success === false) {
-    throw new ApiError(json?.error?.message || 'The catalogue returned an error.');
+  if (!json || json.success === false || !json.data || (!json.data.categories?.length && !json.data.products?.length)) {
+    throw new ApiError(json?.error?.message || 'The catalogue returned no products or categories.');
   }
 
   const data = json.data || {};
