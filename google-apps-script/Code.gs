@@ -308,3 +308,18 @@ function testCatalog() {
   console.log('Categories: ' + c.categories.length + ', Products: ' + c.products.length);
   console.log(JSON.stringify(c, null, 2).slice(0, 3000));
 }
+
+/**
+ * Run from the editor to AUTHORIZE Google Email permissions and test delivery.
+ * In Apps Script editor: Select "testSendEmail" from the top dropdown and click "Run".
+ * Google will ask for permission once; click "Review permissions" -> "Allow".
+ */
+function testSendEmail() {
+  var email = CONFIG.NOTIFICATION_EMAIL || Session.getEffectiveUser().getEmail();
+  MailApp.sendEmail({
+    to: email,
+    subject: 'Alliance International — Email Delivery Test',
+    body: 'If you receive this email, your Google Apps Script is authorized and successfully delivering emails to ' + email + '.',
+  });
+  console.log('Test email successfully dispatched to: ' + email);
+}
