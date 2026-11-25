@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { CONTACT_INFO, IMAGES } from '../data/siteContent.js';
-import { getCategories } from '../services/categoryService.js';
+import { getProducts, getCachedProducts } from '../services/productService.js';
 import { useAsync } from '../hooks/useAsync.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
 
@@ -12,8 +12,8 @@ export default function Contact() {
   usePageTitle('Contact Us');
   const [params] = useSearchParams();
   const initialProduct = params.get('product') || '';
-  const { data: categories } = useAsync(getCategories, []);
-  const productOptions = (categories || []).map((c) => c.name);
+  const { data: products } = useAsync(getProducts, [], getCachedProducts);
+  const productOptions = (products || []).map((p) => p.name);
 
   const details = [
     {
