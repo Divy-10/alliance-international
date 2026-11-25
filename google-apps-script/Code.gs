@@ -47,7 +47,7 @@ var CONFIG = {
   // Set false to disable the enquiry POST endpoint entirely.
   ENQUIRIES_ENABLED: true,
   // Notification email where new enquiries are sent
-  NOTIFICATION_EMAIL: 'jayant@aiexim.com',
+  NOTIFICATION_EMAIL: 'jayant@aiexim.co',
 };
 
 // ── Entry points ───────────────────────────────────────────────────────
@@ -132,7 +132,7 @@ function doPost(e) {
       lock.releaseLock();
     }
 
-    // Send email notification to jayant@aiexim.com (or sheet owner)
+    // Send email notification to jayant@aiexim.co (or sheet owner)
     try {
       var recipient = CONFIG.NOTIFICATION_EMAIL || Session.getEffectiveUser().getEmail();
       var subject = 'New Website Enquiry: ' + row.product + ' (' + row.company + ')';
