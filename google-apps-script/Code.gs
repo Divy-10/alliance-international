@@ -46,6 +46,8 @@ var CONFIG = {
   CACHE_SECONDS: 0,
   // Set false to disable the enquiry POST endpoint entirely.
   ENQUIRIES_ENABLED: true,
+  // Notification email where new enquiries are sent
+  NOTIFICATION_EMAIL: 'jayant@aiexim.com',
 };
 
 // ── Entry points ───────────────────────────────────────────────────────
@@ -130,9 +132,51 @@ function doPost(e) {
       lock.releaseLock();
     }
 
-    // Optional: email a notification to the sheet owner.
-    // MailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'New website enquiry: ' + row.product,
-    //   JSON.stringify(row, null, 2));
+    // Send email notification to jayant@aiexim.com (or sheet owner)
+    try {
+      var recipient = CONFIG.NOTIFICATION_EMAIL || Session.getEffectiveUser().getEmail();
+      var subject = 'New Website Enquiry: ' + row.product + ' (' + row.company + ')';
+      var htmlBody =
+        '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e5e5e5; border-radius: 8px; background-color: #ffffff;">' +
+        '<div style="border-bottom: 2px solid #B49A68; padding-bottom: 12px; margin-bottom: 20px;">' +
+        '<h2 style="color: #171717; margin: 0; font-size: 20px;">Alliance International</h2>' +
+        '<p style="color: #B49A68; margin: 4px 0 0 0; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">New Website Enquiry Received</p>' +
+        '</div>' +
+        '<table style="width: 100%; border-collapse: collapse; font-size: 14px;">' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; width: 30%; color: #555;">Product:</td><td style="padding: 10px 0; color: #171717; font-weight: bold; color: #B49A68;">' + row.product + '</td></tr>' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; color: #555;">Name:</td><td style="padding: 10px 0; color: #171717;">' + row.name + '</td></tr>' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; color: #555;">Company:</td><td style="padding: 10px 0; color: #171717;">' + row.company + '</td></tr>' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; color: #555;">Country:</td><td style="padding: 10px 0; color: #171717;">' + row.country + '</td></tr>' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 10px 0;"><a href="mailto:' + row.email + '" style="color: #B49A68; text-decoration: none;">' + row.email + '</a></td></tr>' +
+        '<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 10px 0; font-weight: bold; color: #555;">Phone:</td><td style="padding: 10px 0; color: #171717;">' + (row.phone ? '<a href="tel:' + row.phone + '" style="color: #171717; text-decoration: none;">' + row.phone + '</a>' : 'N/A') + '</td></tr>' +
+        '<tr><td style="padding: 12px 0 6px 0; font-weight: bold; color: #555; vertical-align: top;">Requirement:</td><td style="padding: 12px 0 6px 0; color: #333; line-height: 1.5; white-space: pre-wrap;">' + row.message + '</td></tr>' +
+        '</table>' +
+        '<div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid #eaeaea; font-size: 12px; color: #888; display: flex; justify-content: space-between;">' +
+        '<span>Submitted via Alliance International Website</span>' +
+        '</div></div>';
+
+      var plainTextBody =
+        'New Website Enquiry Received\n\n' +
+        'Product: ' + row.product + '\n' +
+        'Name: ' + row.name + '\n' +
+        'Company: ' + row.company + '\n' +
+        'Country: ' + row.country + '\n' +
+        'Email: ' + row.email + '\n' +
+        'Phone: ' + (row.phone || 'N/A') + '\n\n' +
+        'Requirement:\n' + row.message + '\n\n' +
+        '---\nSubmitted via Alliance International Website';
+
+      MailApp.sendEmail({
+        to: recipient,
+        subject: subject,
+        body: plainTextBody,
+        htmlBody: htmlBody,
+        replyTo: row.email,
+      });
+    } catch (mailErr) {
+      console.error('Mail notification failed: ' + mailErr);
+      // Row is still saved in sheet even if email dispatch encounters an issue
+    }
 
     return json_({ success: true, data: { received: true } });
   } catch (err) {
