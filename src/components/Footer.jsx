@@ -58,9 +58,16 @@ export default function Footer() {
                 <span>{CONTACT_PLACEHOLDERS.phone}</span>
               </a>
             </li>
-            <li className="flex items-start gap-3 text-white/40">
+            <li className="flex items-start gap-3 text-white/55">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold" strokeWidth={1.5} />
-              <span>{CONTACT_PLACEHOLDERS.address}</span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=New+Block+No.+503+Mahuvej+Road+Village+Mahuvej+Kosamba+Mangrol+Surat+Gujarat+394125"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whitespace-pre-line text-[13px] leading-relaxed transition-colors duration-300 hover:text-white"
+              >
+                {CONTACT_PLACEHOLDERS.address}
+              </a>
             </li>
           </FooterCol>
         </div>

@@ -15,7 +15,7 @@ export const COMPANY = {
 export const CONTACT_INFO = {
   email: 'jayant@aiexim.com',
   phone: '+91 98344 57388',
-  address: '[Office address — to be provided]',
+  address: 'New Block No. 503, Mahuvej Road,\nVillage Mahuvej (near Kosamba), Taluka Mangrol,\nDist. Surat, Gujarat – 394125',
 };
 
 /** Backwards-compatibility alias */
